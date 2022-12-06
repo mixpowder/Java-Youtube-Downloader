@@ -28,7 +28,6 @@ public class MainPanel extends JFrame {
 	private JMenu menu;
 	private JMenuBar menuBar;
 	private String[] split;
-	//private JMenuItem[] menuItem = new JMenuItem[5];
 
 	public MainPanel() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,8 +36,6 @@ public class MainPanel extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-
 
 		txtName = new JTextField();
 		txtName.setBounds(17, 50, 136, 25);
@@ -52,7 +49,7 @@ public class MainPanel extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UrlsCreation creation = new UrlsCreation();
-				creation.setUrls(txtName.getText());
+				creation.Load(txtName.getText());
 				try {
 					new ResultPanel(creation).setVisible(true);
 
@@ -68,8 +65,6 @@ public class MainPanel extends JFrame {
 
 		menu = new JMenu("履歴");
 		setJmenu();
-
-
 	}
 
 	public void setJmenu(){
@@ -84,9 +79,8 @@ public class MainPanel extends JFrame {
 				String data = br.readLine();
 				br.close();
 				split = data.split(",");
-				int loop = (split.length < 5)?split.length : 5;
 				JMenuItem item;
-				for(int i = 0; i < loop; i++){
+				for(int i = 0; i < 5; i++){
 					item = new JMenuItem(split[i]);
 					item.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -97,7 +91,6 @@ public class MainPanel extends JFrame {
 				}
 			}else{
 				file.createNewFile();
-
 			}
 		} catch (IOException ex) {
 			ex.printStackTrace();

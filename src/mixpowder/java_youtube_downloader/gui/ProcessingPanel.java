@@ -9,13 +9,12 @@ import javax.swing.border.EmptyBorder;
 
 public class ProcessingPanel extends JFrame {
 
-	private JPanel contentPane;
 	private JLabel label = new JLabel("Downloading...");
 
 	public ProcessingPanel() {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 241, 135);
-		contentPane = new JPanel();
+		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

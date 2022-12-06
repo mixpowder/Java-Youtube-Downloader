@@ -17,9 +17,10 @@ import mixpowder.java_youtube_downloader.listeners.ButtonListener;
 public class ResultPanel extends JFrame {
 
 	private JPanel contentPane;
-	JLabel[] thumblabels = new JLabel[5];
-	JLabel[] titlelabels = new JLabel[5];
-	String[][] urls;
+	private JLabel[] thumblabels = new JLabel[30];
+	private JLabel[] titlelabels = new JLabel[30];
+	private String[][] urls;
+	private int page = 1;
 
 	public ResultPanel(UrlsCreation creation) throws MalformedURLException {
 		setTitle("Downloader");
@@ -32,84 +33,43 @@ public class ResultPanel extends JFrame {
 		contentPane.setLayout(null);
 		ButtonListener listener = new ButtonListener(this.urls);
 
-		for(int i = 0; i < 5; i++){
+		for(int i = 0; i < 30; i++){
 			thumblabels[i] = new JLabel();
 			titlelabels[i] = new JLabel();
 		}
 
-		JButton mp4_1 = new JButton("MP4_1");
-		mp4_1.setBounds(400, 55, 73, 27);
-		mp4_1.addActionListener(listener);
-		contentPane.add(mp4_1);
-
-		JButton mp4_2 = new JButton("MP4_2");
-		mp4_2.setBounds(400, 148, 73, 27);
-		mp4_2.addActionListener(listener);
-		contentPane.add(mp4_2);
-
-		JButton mp4_3 = new JButton("MP4_3");
-		mp4_3.setBounds(400, 241, 73, 27);
-		mp4_3.addActionListener(listener);
-		contentPane.add(mp4_3);
-
-		JButton mp4_4 = new JButton("MP4_4");
-		mp4_4.setBounds(400, 334, 73, 27);
-		mp4_4.addActionListener(listener);
-		contentPane.add(mp4_4);
-
-		JButton mp4_5 = new JButton("MP4_5");
-		mp4_5.setBounds(400, 427, 73, 27);
-		mp4_5.addActionListener(listener);
-		contentPane.add(mp4_5);
-
-		/*JButton mp3_1 = new JButton("MP3_1");
-		mp3_1.setBounds(500, 55, 73, 27);
-		mp3_1.addActionListener(listener);
-		contentPane.add(mp3_1);
-
-		JButton mp3_2 = new JButton("MP3_2");
-		mp3_2.setBounds(500, 148, 73, 27);
-		mp3_2.addActionListener(listener);
-		contentPane.add(mp3_2);
-
-		JButton mp3_3 = new JButton("MP3_3");
-		mp3_3.setBounds(500, 241, 73, 27);
-		mp3_3.addActionListener(listener);
-		contentPane.add(mp3_3);
-
-		JButton mp3_4 = new JButton("MP3_4");
-		mp3_4.setBounds(500, 334, 73, 27);
-		mp3_4.addActionListener(listener);
-		contentPane.add(mp3_4);
-
-		JButton mp3_5 = new JButton("MP3_5");
-		mp3_5.setBounds(500, 427, 73, 27);
-		mp3_5.addActionListener(listener);
-		contentPane.add(mp3_5);
-		*/
-		setLabels(contentPane);
+		this.setComponents(listener);
 	}
 
-	public void setLabels(JPanel panel) throws MalformedURLException{
-		for(int i = 0; i < 5; i++){
-			URL url;
+	public void setComponents(ButtonListener listener) throws MalformedURLException{
+		URL url;
+		int place_number = 0;
+		JButton button;
+		for(int i = ((page - 1) * 5); i < (5 * page); i++){
 			try{
 				url = new URL(this.urls[1][i]);
 				thumblabels[i].setIcon(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(160, 90, Image.SCALE_DEFAULT)));
-				thumblabels[i].setBounds(17,21 + (95 * i) , 160, 90);
-				panel.add(thumblabels[i]);
+				thumblabels[i].setBounds(17, 21 + (95 * place_number) , 160, 90);
+				contentPane.add(thumblabels[i]);
 			}catch(MalformedURLException ex){
 				ex.getStackTrace();
 			}
 
 			if(this.urls[2][i].length() >= 20){
-				titlelabels[i].setText(this.urls[2][i].substring(0,20));
+				titlelabels[i].setText(this.urls[2][i].substring(0, 20));
 			}else{
 				titlelabels[i].setText(this.urls[2][i]);
 			}
-			titlelabels[i].setBounds(195, 59 + (95 * i), 200, 19);
+			titlelabels[i].setBounds(195, 59 + (95 * place_number), 200, 19);
 			contentPane.add(titlelabels[i]);
 
+			button = new JButton("MP4_" + (i + 1));
+			button.setBounds(400, (55 + (place_number * 93)), 73, 27);
+			button.addActionListener(listener);
+			contentPane.add(button);
+
+			place_number++;
 		}
 	}
+
 }
