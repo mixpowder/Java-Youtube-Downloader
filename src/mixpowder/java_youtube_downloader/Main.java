@@ -11,14 +11,11 @@ import mixpowder.java_youtube_downloader.gui.MainPanel;
 public class Main {
 
 	public static void main(String[] args) throws MalformedURLException {
-
 		Main.fileCheck();
-
-		new MainPanel().setVisible(true);
+		(new MainPanel()).setVisible(true);
 	}
 
 	public static void fileCheck() {
-
 		if(!(new File("history.txt")).exists()) {
 			try {
 				BufferedWriter bw = new BufferedWriter(new FileWriter("history.txt", false));
@@ -34,7 +31,5 @@ public class Main {
 		if(!file.exists()){
 			file.mkdir();
 		}
-
 	}
-
 }

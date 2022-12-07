@@ -18,14 +18,16 @@ public class ProcessingThread extends Thread{
 	public void run() {
 		try {
 			Process process = Runtime.getRuntime().exec("cmd /c " + cmd);
-			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), "UTF-8"));
 			String line = null;
 			while ((line = reader.readLine()) != null) {
-				System.out.println(line);
-			    //sb.append("\n");
+				if(line.contains("[download]") && line.contains("ETA")){
+					panel.getTextArea().setText("Completed:" + line.substring(11,line.indexOf("of")) + "Time: " + line.substring(line.indexOf("ETA") + 4, line.length()));
+				}else{
+					panel.getTextArea().setText("Preparing...");
+				}
 			}
-
-		panel.setText("Done!");
+			panel.getTextArea().setText("Download is completed");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -30,7 +30,6 @@ public class ButtonListener implements ActionListener{
 	public void mp4(int num){
 		ProcessingPanel panel = new ProcessingPanel();
 		panel.setVisible(true);
-		panel.setText("Downloading...");
 		String cmd = "tools\\yt-dlp.exe " + "https://www.youtube.com/watch?v=" + this.urls[0][num - 1] + " -o mp4\\%(title)s.mp4 -f mp4";
 		(new ProcessingThread(cmd, panel)).start();
 	}
