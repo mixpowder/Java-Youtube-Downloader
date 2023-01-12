@@ -19,7 +19,7 @@ public class ProcessingPanel extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		this.textArea = new JTextArea("started download");
+		this.textArea = new JTextArea("Started download");
 		textArea.setFont(new Font("ＭＳ 明朝", Font.PLAIN, 20));
 		textArea.setEditable(false);
 		textArea.setBounds(0, 0, 384, 44);

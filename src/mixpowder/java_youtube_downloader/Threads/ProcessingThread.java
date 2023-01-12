@@ -27,7 +27,7 @@ public class ProcessingThread extends Thread{
 					panel.getTextArea().setText("Preparing...");
 				}
 			}
-			panel.getTextArea().setText("Download is completed");
+			panel.getTextArea().setText("Download is done");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

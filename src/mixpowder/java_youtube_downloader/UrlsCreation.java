@@ -29,7 +29,7 @@ public class UrlsCreation {
 	public void read(String url) throws Exception {
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new InputStreamReader((new URL(url).openConnection()).getInputStream(),"UTF-8"));
+			br = new BufferedReader(new InputStreamReader((new URL(url).openConnection()).getInputStream(), "UTF-8"));
 			String line = null;
 			while((line = br.readLine()) != null) {
 				html += line;
