@@ -16,10 +16,9 @@ public class UrlsCreation {
 			name = URLEncoder.encode(name, "UTF-8");
 			String url = "https://www.youtube.com/results?search_query=" + name;
 			this.read(url);
-
 			this.setUrls(0, "{\"videoRenderer\":{\"videoId\":\"", "\"");
 			this.setUrls(1, "\"width\":360,\"height\":202},{\"url\":\"", "\"");
-			this.setUrls(2, "\"title\":{\"runs\":[{\"text\":\"", "\"}],\"accessibility\"");
+			this.setUrls(2, "\",\"width\":720,\"height\":404}]},\"title\":{\"runs\":[{\"text\":\"","\"");
 
 		}catch(Exception e) {
 			e.printStackTrace();

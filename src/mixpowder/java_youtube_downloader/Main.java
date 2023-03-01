@@ -12,10 +12,19 @@ public class Main {
 
 	public static void main(String[] args) throws MalformedURLException {
 		Main.fileCheck();
+		Main.toolUpdate();
 		(new MainPanel()).setVisible(true);
 	}
 
-	public static void fileCheck() {
+	private static void toolUpdate() {
+		try {
+			Runtime.getRuntime().exec("cmd /c " + "tools\\yt-dlp.exe -U");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static void fileCheck() {
 		if(!(new File("history.txt")).exists()) {
 			try {
 				BufferedWriter bw = new BufferedWriter(new FileWriter("history.txt", false));
